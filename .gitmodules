@@ -1,3 +1,6 @@
 [submodule "roverControlUnit"]
 	path = roverControlUnit
 	url = https://github.com/Tuncayarda/roverControlUnit.git
+[submodule "ros2_ws"]
+	path = ros2_ws
+	url = https://github.com/Tuncayarda/ros2_ws.git
