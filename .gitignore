@@ -1,0 +1,5 @@
+build/
+uros_ws/build/
+uros_ws/firmware/
+uros_ws/install/
+uros_ws/log/
