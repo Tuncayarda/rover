@@ -4,27 +4,31 @@ set(NAME Rover)
 
 include(pico_sdk_import.cmake)
 
-# Gooey boilerplate
 project(${NAME} C CXX ASM)
+
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# Initialize the SDK
 pico_sdk_init()
 
-#include Libraries
+set(MICRO_ROS_PATH
+    "${CMAKE_CURRENT_LIST_DIR}/uros_ws/firmware/build"
+    CACHE STRING "Course Common Lib"
+)
 
-SET(MICRO_ROS_PATH "${CMAKE_CURRENT_LIST_DIR}/uros_ws/firmware/build" CACHE STRING "Course Common Lib")
 include(micro_ros.cmake)
 
+add_subdirectory(pico_src/pico_motor)
+add_subdirectory(pico_src/pico_servo)
 
-#Add main source directory
-add_subdirectory(pico_src)
+install(CODE
+    "execute_process(
+        COMMAND
+            $ENV{HOME}/bin/picoDeploy.sh
+            ${CMAKE_CURRENT_BINARY_DIR}/pico_src/${NAME}.elf
+    )"
+)
 
-#Set up files for the release packages
-install(CODE "execute_process(COMMAND $ENV{HOME}/bin/picoDeploy.sh ${CMAKE_CURRENT_BINARY_DIR}/pico_src/${NAME}.elf)")
-
-# Set up files for the release packages
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/pico_src/${NAME}.uf2
     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
