@@ -18,6 +18,7 @@ set(MICRO_ROS_PATH
 
 include(micro_ros.cmake)
 
+add_subdirectory(pico_src/common_lib)
 add_subdirectory(pico_src/pico_motor)
 add_subdirectory(pico_src/pico_servo)
 

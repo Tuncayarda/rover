@@ -9,9 +9,11 @@ add_executable(${NAME}
 
 target_compile_options(${NAME} PRIVATE
     $<$<COMPILE_LANGUAGE:C>:-Wno-implicit-function-declaration -Wno-builtin-declaration-mismatch>
+    $<$<COMPILE_LANGUAGE:CXX>:-Wno-unused-result>
 )
 
 target_link_libraries(${NAME}
+    common_lib
     pico_stdlib
     micro_ros
     hardware_pwm
