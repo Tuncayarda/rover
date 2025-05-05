@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-set(NAME RosServo) # <-- Name your project/executable here!
+set(NAME Rover)
 
 include(pico_sdk_import.cmake)
 

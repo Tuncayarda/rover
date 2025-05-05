@@ -49,8 +49,8 @@ build_all() {
     "$(pwd)/my_toolchain.cmake" \
     "$(pwd)/my_colcon.meta"
 
-  cd "$PICO_PROJECT_DIR/build"
   mkdir -p build
+  cd "$PICO_PROJECT_DIR/build"
   cmake ..
   make
 }
@@ -59,6 +59,7 @@ build_pico() {
   echo "=== ONLY PICO BUILD ==="
 
   echo "- Running PICO make..."
+  mkdir -p build
   cd "$PICO_PROJECT_DIR/build"
   cmake ..
   make
