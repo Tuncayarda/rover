@@ -6,12 +6,13 @@
 #include <stdint.h>
 #include <sys/types.h>
 
+#define PICO_UART_TX_PIN 0
+#define PICO_UART_RX_PIN 1
 
 void usleep(uint64_t us)
 {
     sleep_us(us);
 }
-
 
 int clock_gettime(clockid_t unused, struct timespec *tp)
 {
@@ -20,7 +21,6 @@ int clock_gettime(clockid_t unused, struct timespec *tp)
     tp->tv_nsec = (m % 1000000) * 1000;
     return 0;
 }
-
 
 bool pico_serial_transport_open(struct uxrCustomTransport * transport)
 {

@@ -39,7 +39,7 @@ build_all() {
 
   source install/local_setup.bash
 
-  ros2 run micro_ros_setup create_firmware_ws.sh generate_lib
+  ros2 run micro_ros_setup create_firmware_ws.sh generate_lib generic
 
   for pkg in "${FIRMWARE_PACKAGES[@]}"; do
     ros2 run "$pkg" create_fwws.sh || true
@@ -49,18 +49,14 @@ build_all() {
     "$(pwd)/my_toolchain.cmake" \
     "$(pwd)/my_colcon.meta"
 
-  mkdir -p build
-  cd "$PICO_PROJECT_DIR/build"
-  cmake ..
-  make
+  build_pico
 }
 
 build_pico() {
-  echo "=== ONLY PICO BUILD ==="
-
   echo "- Running PICO make..."
+  cd "$PICO_PROJECT_DIR"
   mkdir -p build
-  cd "$PICO_PROJECT_DIR/build"
+  cd "build"
   cmake ..
   make
 }

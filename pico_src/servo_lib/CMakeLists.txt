@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.12)
 
-set(NAME common_lib)
-project(common_lib C CXX ASM)
+set(NAME servo_lib)
+project(${NAME} C CXX ASM)
 
-add_library(common_lib STATIC
-  pico_uart_transport.c
+add_library(${NAME} STATIC
+  servo.cpp
 )
 
 target_compile_options(${NAME} PRIVATE
@@ -12,15 +12,15 @@ target_compile_options(${NAME} PRIVATE
     $<$<COMPILE_LANGUAGE:CXX>:-Wno-unused-result>
 )
 
-target_include_directories(common_lib
+target_include_directories(${NAME}
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
 )
 
-target_link_libraries(common_lib
+target_link_libraries(${NAME}
   PUBLIC
-    micro_ros
     pico_stdlib
+    hardware_pwm
 )
 
 file(GLOB_RECURSE ALL_PATHS
@@ -36,7 +36,7 @@ foreach(path ${ALL_PATHS})
 endforeach()
 list(REMOVE_DUPLICATES ROS2_INCLUDE_DIRS)
 
-target_include_directories(common_lib
+target_include_directories(${NAME}
   PUBLIC
     ${ROS2_INCLUDE_DIRS}
 )

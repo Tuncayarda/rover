@@ -13,12 +13,13 @@ pico_sdk_init()
 
 set(MICRO_ROS_PATH
     "${CMAKE_CURRENT_LIST_DIR}/uros_ws/firmware/build"
-    CACHE STRING "Course Common Lib"
+    CACHE STRING ""
 )
 
 include(micro_ros.cmake)
 
-add_subdirectory(pico_src/common_lib)
+add_subdirectory(pico_src/uart_lib)
+add_subdirectory(pico_src/servo_lib)
 add_subdirectory(pico_src/pico_motor)
 add_subdirectory(pico_src/pico_servo)
 

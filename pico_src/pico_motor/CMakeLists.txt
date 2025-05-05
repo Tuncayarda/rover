@@ -13,7 +13,7 @@ target_compile_options(${NAME} PRIVATE
 )
 
 target_link_libraries(${NAME}
-    common_lib
+    uart_lib
     pico_stdlib
     micro_ros
     hardware_pwm
@@ -37,8 +37,8 @@ target_include_directories(${NAME} PRIVATE
 
 pico_add_extra_outputs(${NAME})
 
-pico_enable_stdio_usb(${NAME} 1)
-pico_enable_stdio_uart(${NAME} 0)
+pico_enable_stdio_usb(${NAME} 0)
+pico_enable_stdio_uart(${NAME} 1)
 add_compile_definitions(PICO_UART_ENABLE_CRLF_SUPPORT=0)
 add_compile_definitions(PICO_STDIO_ENABLE_CRLF_SUPPORT=0)
 add_compile_definitions(PICO_STDIO_DEFAULT_CRLF=0)
